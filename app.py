@@ -3,6 +3,8 @@ SupeRR Selector — Season 2
 Ultimate Premium Dashboard Upgrade
 Rajasthan Royals Scouting & Auction Analytics Platform
 """
+from pathlib import Path
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -109,6 +111,29 @@ with st.sidebar:
         <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">Ready for Auction War Room</div>
     </div>
     """, unsafe_allow_html=True)
+
+    # Direct Download ZIP button for full project package
+    zip_candidate_paths = [
+        Path("SupeRR_Selector_Season2_UPGRADED.zip"),
+        Path("/app/SupeRR_Selector_Season2_UPGRADED.zip"),
+    ]
+    zip_bytes = None
+    for zp in zip_candidate_paths:
+        if zp.exists():
+            with open(zp, "rb") as zf:
+                zip_bytes = zf.read()
+            break
+
+    if zip_bytes:
+        st.markdown("<hr style='margin:16px 0;'>", unsafe_allow_html=True)
+        st.download_button(
+            label="⬇️ Download Project ZIP",
+            data=zip_bytes,
+            file_name="SupeRR_Selector_Season2_UPGRADED.zip",
+            mime="application/zip",
+            help="Download the complete upgraded project package including all CSV datasets, code, modules, tests, and documentation.",
+            use_container_width=True,
+        )
 
 # ----------------- APPLY GLOBAL FILTERS -----------------
 f_bb = bb.copy()
