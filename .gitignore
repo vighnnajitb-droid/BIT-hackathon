@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+env/
+venv/
+*.egg-info/
+.pytest_cache/
+.streamlit/
+*.zip
+data/*.csv
